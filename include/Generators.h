@@ -1,0 +1,126 @@
+//
+//  Generators.h
+//  Satin
+//
+//  Created by Reza Ali on 6/5/20.
+//
+
+#ifndef Generators_h
+#define Generators_h
+
+#import <stdio.h>
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
+#include "Types.h"
+#pragma clang diagnostic pop
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+GeometryData generateLineGeometryData(void);
+
+GeometryData generateBoxGeometryData(
+    float width,
+    float height,
+    float depth,
+    float centerX,
+    float centerY,
+    float centerZ,
+    int widthResolution,
+    int heightResolution,
+    int depthResolution);
+
+GeometryData generateCapsuleGeometryData(
+    float radius,
+    float height,
+    int angularResolution,
+    int radialResolution,
+    int verticalResolution,
+    int axis);
+
+GeometryData generateConeGeometryData(
+    float radius,
+    float height,
+    int angularResolution,
+    int radialResolution,
+    int verticalResolution);
+
+GeometryData generateCylinderGeometryData(
+    float radius,
+    float height,
+    int angularResolution,
+    int radialResolution,
+    int verticalResolution);
+
+GeometryData generatePlaneGeometryData(
+    float width, float height, int widthResolution, int heightResolution, int plane, bool centered);
+
+GeometryData generateArcGeometryData(
+    float innerRadius,
+    float outerRadius,
+    float startAngle,
+    float endAngle,
+    int angularResolution,
+    int radialResolution);
+
+GeometryData generateTorusGeometryData(
+    float minorRadius, float majorRadius, int minorResolution, int majorResolution);
+
+GeometryData generateSkyboxGeometryData(float size);
+
+GeometryData generateUVDiskGeometryData(float innerRadius, float outerRadius);
+
+GeometryData generateCircleGeometryData(float radius, int angularResolution, int radialResolution);
+
+GeometryData generateTriangleGeometryData(float size);
+
+GeometryData generateQuadGeometryData(float size);
+
+GeometryData
+generateSphereGeometryData(float radius, int angularResolution, int verticalResolution);
+
+GeometryData generateIcoSphereGeometryData(float radius, int res);
+
+GeometryData generateOctaSphereGeometryData(float radius, int res);
+
+GeometryData
+generateSquircleGeometryData(float size, float p, int angularResolution, int radialResolution);
+
+GeometryData generateRoundedRectGeometryData(
+    float width,
+    float height,
+    float radius,
+    int angularResolution,
+    int edgeXResolution,
+    int edgeYResolution,
+    int radialResolution);
+
+GeometryData generateExtrudedRoundedRectGeometryData(
+    float width,
+    float height,
+    float depth,
+    float radius,
+    int angularResolution,
+    int edgeXResolution,
+    int edgeYResolution,
+    int edgeZResolution,
+    int radialResolution);
+
+GeometryData generateTubeGeometryData(
+    float radius,
+    float height,
+    float startAngle,
+    float endAngle,
+    int angularResolution,
+    int verticalResolution);
+
+GeometryData
+generateRoundedBoxGeometryData(float width, float height, float depth, float radius, int res);
+
+#if defined(__cplusplus)
+}
+#endif
+
+#endif /* Generators_h */

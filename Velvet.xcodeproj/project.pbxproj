@@ -6,13 +6,74 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1BB86A082DB0B16500A91945 /* LanguageSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1BB86A072DB0B16500A91945 /* LanguageSupport */; };
+		1BB86A472DB18CC700A91945 /* libSatin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A122DB16B0300A91945 /* libSatin.dylib */; };
+		1BB86A482DB18CC700A91945 /* libSatinCore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A112DB16B0300A91945 /* libSatinCore.dylib */; };
+		1BB86A492DB1A57F00A91945 /* libSatin.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A122DB16B0300A91945 /* libSatin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BB86A4A2DB1A57F00A91945 /* libSatinCore.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A112DB16B0300A91945 /* libSatinCore.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BFF50CC2DB08DE5007E7497 /* CodeEditorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFF50CB2DB08DE5007E7497 /* CodeEditorView */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1BB86A1A2DB16B3700A91945 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 11;
+			files = (
+				1BB86A492DB1A57F00A91945 /* libSatin.dylib in Embed Frameworks */,
+				1BB86A4A2DB1A57F00A91945 /* libSatinCore.dylib in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BB86A5C2DB3121200A91945 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1BB86A112DB16B0300A91945 /* libSatinCore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatinCore.dylib; path = ../Satin/build/libSatinCore.dylib; sourceTree = "<group>"; };
+		1BB86A122DB16B0300A91945 /* libSatin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatin.dylib; path = ../Satin/build/libSatin.dylib; sourceTree = "<group>"; };
+		1BB86A452DB18CC700A91945 /* Velvet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Velvet.xcodeproj; path = /Users/vade/Documents/Repositories/Fabric/Velvet/Velvet.xcodeproj; sourceTree = "<absolute>"; };
 		1BFF50A72DB07542007E7497 /* Velvet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velvet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1BB86A4F2DB2BB5100A91945 /* Exceptions for "Velvet" folder in "Velvet" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Renderer3D_.swift,
+				Renderer3D.swift,
+			);
+			target = 1BFF50A62DB07542007E7497 /* Velvet */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		1BB86A332DB16E1800A91945 /* include */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = include;
+			sourceTree = "<group>";
+		};
+		1BB86A3A2DB1724800A91945 /* Satin.swiftmodule */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Satin.swiftmodule;
+			sourceTree = "<group>";
+		};
 		1BFF50A92DB07542007E7497 /* Velvet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1BB86A4F2DB2BB5100A91945 /* Exceptions for "Velvet" folder in "Velvet" target */,
+			);
 			path = Velvet;
 			sourceTree = "<group>";
 		};
@@ -23,16 +84,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BB86A082DB0B16500A91945 /* LanguageSupport in Frameworks */,
+				1BFF50CC2DB08DE5007E7497 /* CodeEditorView in Frameworks */,
+				1BB86A472DB18CC700A91945 /* libSatin.dylib in Frameworks */,
+				1BB86A482DB18CC700A91945 /* libSatinCore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BB86A0C2DB0B21800A91945 /* CompilerResources */ = {
+			isa = PBXGroup;
+			children = (
+				1BB86A3A2DB1724800A91945 /* Satin.swiftmodule */,
+				1BB86A332DB16E1800A91945 /* include */,
+				1BB86A122DB16B0300A91945 /* libSatin.dylib */,
+				1BB86A112DB16B0300A91945 /* libSatinCore.dylib */,
+			);
+			name = CompilerResources;
+			sourceTree = "<group>";
+		};
+		1BB86A442DB18CC700A91945 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BB86A452DB18CC700A91945 /* Velvet.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1BFF509E2DB07542007E7497 = {
 			isa = PBXGroup;
 			children = (
 				1BFF50A92DB07542007E7497 /* Velvet */,
+				1BB86A0C2DB0B21800A91945 /* CompilerResources */,
+				1BB86A442DB18CC700A91945 /* Frameworks */,
 				1BFF50A82DB07542007E7497 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,16 +141,22 @@
 				1BFF50A32DB07542007E7497 /* Sources */,
 				1BFF50A42DB07542007E7497 /* Frameworks */,
 				1BFF50A52DB07542007E7497 /* Resources */,
+				1BB86A1A2DB16B3700A91945 /* Embed Frameworks */,
+				1BB86A5C2DB3121200A91945 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				1BB86A332DB16E1800A91945 /* include */,
 				1BFF50A92DB07542007E7497 /* Velvet */,
 			);
 			name = Velvet;
 			packageProductDependencies = (
+				1BFF50CB2DB08DE5007E7497 /* CodeEditorView */,
+				1BFF50CD2DB08DE5007E7497 /* LanguageSupport */,
+				1BB86A072DB0B16500A91945 /* LanguageSupport */,
 			);
 			productName = Velvet;
 			productReference = 1BFF50A72DB07542007E7497 /* Velvet.app */;
@@ -94,6 +186,10 @@
 			);
 			mainGroup = 1BFF509E2DB07542007E7497;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1BB86A042DB0B16500A91945 /* XCLocalSwiftPackageReference "../CodeEditorView" */,
+				1BB86A582DB311DA00A91945 /* XCLocalSwiftPackageReference "../Satin" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1BFF50A82DB07542007E7497 /* Products */;
 			projectDirPath = "";
@@ -253,20 +349,30 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Velvet/Preview Content\"";
-				DEVELOPMENT_TEAM = SHG3AW6YV7;
-				ENABLE_HARDENED_RUNTIME = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@executable_path/../SharedFrameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-L$(PROJECT_DIR)/../Satin/build",
+					"-lSatin",
+					"-lSatinCore",
+				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.hi-rez.Velvet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build/include";
 			};
 			name = Debug;
 		};
@@ -280,20 +386,30 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Velvet/Preview Content\"";
-				DEVELOPMENT_TEAM = SHG3AW6YV7;
-				ENABLE_HARDENED_RUNTIME = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@executable_path/../SharedFrameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-L$(PROJECT_DIR)/../Satin/build",
+					"-lSatin",
+					"-lSatinCore",
+				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.hi-rez.Velvet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build/include";
 			};
 			name = Release;
 		};
@@ -319,6 +435,32 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		1BB86A042DB0B16500A91945 /* XCLocalSwiftPackageReference "../CodeEditorView" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CodeEditorView;
+		};
+		1BB86A582DB311DA00A91945 /* XCLocalSwiftPackageReference "../Satin" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Satin;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1BB86A072DB0B16500A91945 /* LanguageSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LanguageSupport;
+		};
+		1BFF50CB2DB08DE5007E7497 /* CodeEditorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CodeEditorView;
+		};
+		1BFF50CD2DB08DE5007E7497 /* LanguageSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LanguageSupport;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1BFF509F2DB07542007E7497 /* Project object */;
 }
