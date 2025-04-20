@@ -47,6 +47,7 @@
 		1BB86A692DB4471800A91945 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		1BB86ACF2DB466E700A91945 /* libSatin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatin.dylib; path = ../Satin/build/libSatin.dylib; sourceTree = SOURCE_ROOT; };
 		1BB86AD02DB466E700A91945 /* libSatinCore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatinCore.dylib; path = ../Satin/build/libSatinCore.dylib; sourceTree = SOURCE_ROOT; };
+		1BB86ADE2DB57AC200A91945 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1BFF50A72DB07542007E7497 /* Velvet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velvet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +109,7 @@
 		1BFF509E2DB07542007E7497 = {
 			isa = PBXGroup;
 			children = (
+				1BB86ADE2DB57AC200A91945 /* README.md */,
 				1BFF50A92DB07542007E7497 /* Velvet */,
 				1BB86A442DB18CC700A91945 /* Frameworks */,
 				1BFF50A82DB07542007E7497 /* Products */,
