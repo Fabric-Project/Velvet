@@ -11,6 +11,12 @@ Compilation for the live coding is broken into various phases and hasnt been int
                     
 Compiling Velvet requires a few manual and annoying steps.
 
+Requires:
+* XCode / swiftc
+* Satin Repo from Fabric checked out to in the folder above this project, linked locally https://github.com/Fabric-Project/Satin/tree/features/live-code-support
+
+                                                    
+                                                    
 1. Update the XCode project to build and embed the Satin Dynamic Swift package and build the app.
 2. This produces a few files ive not yet figured out how to create proceduraly, namely:
     - Satin.abi.json
