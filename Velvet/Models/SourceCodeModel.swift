@@ -9,33 +9,33 @@ import CodeEditorView
 import LanguageSupport
 import Satin
 
-public final class MetalViewRendererBox: MetalViewRenderer {
-    private let wrapped: Satin.MetalViewRendererDelegate
-
-    public init(_ wrapped: Satin.MetalViewRendererDelegate) {
-        self.wrapped = wrapped
-        super.init()
-#if DEBUG_VIEWS
-        print("🔧 MetalViewRendererBox initialized with id: \(wrapped.id)")
-#endif
-    }
-
-    override public var id: String {
-        wrapped.id
-    }
-
-    override public func setup() {
-        wrapped.setup()
-    }
-
-    override public func draw(renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
-        wrapped.draw(renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer)
-    }
-
-    override public func cleanup() {
-        wrapped.cleanup()
-    }
-}
+//public final class MetalViewRendererBox: MetalViewRenderer {
+//    private let wrapped: Satin.MetalViewRendererDelegate
+//
+//    public init(_ wrapped: Satin.MetalViewRendererDelegate) {
+//        self.wrapped = wrapped
+//        super.init()
+//#if DEBUG_VIEWS
+//        print("🔧 MetalViewRendererBox initialized with id: \(wrapped.id)")
+//#endif
+//    }
+//
+//    override public var id: String {
+//        wrapped.id
+//    }
+//
+//    override public func setup() {
+//        wrapped.setup()
+//    }
+//
+//    override public func draw(renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
+//        wrapped.draw(renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer)
+//    }
+//
+//    override public func cleanup() {
+//        wrapped.cleanup()
+//    }
+//}
 
 
 @Observable class SourceCodeModel : Equatable
@@ -56,7 +56,7 @@ public final class MetalViewRendererBox: MetalViewRenderer {
     
     // THIS HAS TO BE IGNORED otherwise something with dynamic types fucked up the macro SwiftUI makes
     // Thanks ChatGPT lol
-    var rendererBox:MetalViewRendererBox? = nil
+    var renderer:(any MetalViewRendererDelegate)? = nil
     
     init(fileUrl:URL)
     {
@@ -68,21 +68,22 @@ public final class MetalViewRendererBox: MetalViewRenderer {
     {
         try self.content.write(to: self.fileURL, atomically: true, encoding: .utf8)
         
-        
+    
         
 //        let libPath = "/Users/vade/Documents/Repositories/Fabric/Satin/build"
         let libPath = Bundle.main.sharedFrameworksPath!
-        let headerSearchPaths = "/Users/vade/Documents/Repositories/Fabric/Satin/build/include"
-        let swiftModulePath = "/Users/vade/Documents/Repositories/Fabric/Satin/build/Satin.swiftmodule"
-        let moduleMapPath = "/Users/vade/Documents/Repositories/Fabric/Satin/build/module.modulemap"
-
+        let headerSearchPaths = libPath + "/include"
+        let swiftModulePath = libPath
+        let moduleMapPath = libPath + "/module.modulemap"
+        
         let dylibURL = self.compiler.compile(sourceURL: self.fileURL,
-                                            moduleSearchPaths: [swiftModulePath], // Only for Satin.swiftmodule
-                                               libSearchPaths: [libPath],
-                                               linkLibraries: ["Satin", "SatinCore"],
-                                               headerSearchPaths: [headerSearchPaths],
-                                               moduleMapPath: moduleMapPath
-                                            )
+                                             moduleSearchPaths: [swiftModulePath], // Only for Satin.swiftmodule
+                                             libSearchPaths: [libPath],
+                                             linkLibraries: ["Satin", "SatinCore"],
+                                             headerSearchPaths: [headerSearchPaths],
+                                             moduleMapPath: moduleMapPath,
+                                             linkFrameworks: ["Metal", "MetalKit"]
+        )
         guard let dylibURL = dylibURL else
         {
             print("Error Compiling", compiler.getLastStderr())
@@ -93,16 +94,16 @@ public final class MetalViewRendererBox: MetalViewRenderer {
         
         print("\nSuccessfully compiled: \(dylibURL)\n")
         
-        self.rendererBox?.cleanup()
-        self.rendererBox = nil
+        self.renderer?.cleanup()
+        self.renderer = nil
         self.rendererDidChange.toggle()
 
         self.loader.unloadLibrary()
         
         
-        print("\nTrying to load: \(dylibURL) - DYLD_LOOKUP \(libPath)\n ")
+        print("\nTrying to load: \(dylibURL) ")//- DYLD_LOOKUP \(libPath)\n ")
 
-        if self.loader.loadLibrary(at: dylibURL.path(), runtimeLibPath: libPath)
+        if self.loader.loadLibrary(at: dylibURL.path(), runtimeLibPath: nil)
         {
             let renderer = loader.instantiateRenderer(as: MetalViewRenderer.self)
             if let renderer = renderer {
@@ -116,7 +117,7 @@ public final class MetalViewRendererBox: MetalViewRenderer {
 
                 // When ready:
                 DispatchQueue.main.async {
-                    self.rendererBox = MetalViewRendererBox(renderer)
+                    self.renderer = renderer
                     self.rendererDidChange.toggle()
                 }
 

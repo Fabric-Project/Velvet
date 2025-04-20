@@ -39,7 +39,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             
-            if let renderer = self.sourceCode.rendererBox
+            if let renderer = self.sourceCode.renderer
             {
                 AnyView(SatinMetalView(renderer:renderer))
                     .id(ObjectIdentifier(renderer))

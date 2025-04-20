@@ -39,7 +39,8 @@ class SwiftDynamicCompiler {
             "-emit-library",
             "-o", dylibPath,
             "-enable-library-evolution",
-            "-DSWIFT_PACKAGE"
+            "-DSWIFT_PACKAGE",
+            "-target", "arm64-apple-macos14.0"
         ]
 
         for path in moduleSearchPaths {
