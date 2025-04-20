@@ -26,7 +26,7 @@ class SwiftDynamicCompiler {
         let fileManager = FileManager.default
         let tempDir = fileManager.temporaryDirectory
         let outputName = sourceURL.deletingPathExtension().lastPathComponent
-        let dylibPath = tempDir.appendingPathComponent("lib\(outputName).dylib").path
+        let dylibPath = tempDir.appendingPathComponent("lib\(outputName)-\(UUID().uuidString).dylib").path
 
         if fileManager.fileExists(atPath: dylibPath)
         {
@@ -38,8 +38,9 @@ class SwiftDynamicCompiler {
             sourceURL.path,
             "-emit-library",
             "-o", dylibPath,
-            "-enable-library-evolution",
+//            "-enable-library-evolution",
             "-DSWIFT_PACKAGE",
+            //"-DDEBUG_VIEWS",
             "-target", "arm64-apple-macos14.0"
         ]
 

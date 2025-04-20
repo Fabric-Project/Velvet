@@ -1,11 +1,11 @@
-         //
+//
 //  Renderer.swift
 //  Example
 // 
 //  Created by Reza Ali on 6/27/20.
 //  Copyright © 2020 Hi-Rez. All rights reserved.
 //
-       
+   
 import Combine
 import Metal
 import MetalKit
@@ -40,20 +40,18 @@ func end() {
     }
 }
 
-  
-
 @_objcRuntimeName(Renderer3D)
 public final class Renderer3D: MetalViewRenderer {
     let mesh = Mesh(
         label: "Sphere",
-        geometry: IcoSphereGeometry(radius: 0.5, resolution: 0),
-        material: BasicDiffuseMaterial(hardness: 0.7)
+        geometry: IcoSphereGeometry(radius: 0.5, resolution: 1),
+        material: BasicDiffuseMaterial(color: [1.0, 0.0, 1.0, 1.0], hardness: 0.5)
     )
 
     let intersectionMesh = Mesh(
         label: "Intersection Mesh",
-        geometry: IcoSphereGeometry(radius: 0.05, resolution: 2),
-        material: BasicColorMaterial(color: [0.0, 1.0, 0.0, 1.0], blending: .disabled),
+        geometry: IcoSphereGeometry(radius: 0.05, resolution: 5),
+        material: BasicColorMaterial(color: [1.0, 1.0, 0.0, 1.0], blending: .disabled),
         visible: false,
         renderPass: 1
     )
@@ -66,6 +64,10 @@ public final class Renderer3D: MetalViewRenderer {
 //    var texturesURL: URL { rendererAssetsURL.appendingPathComponent("Textures") }
 //    var modelsURL: URL { rendererAssetsURL.appendingPathComponent("Models") }
 
+    private var uuid: UUID = UUID()
+    
+    public override var id: String { "Renderer3D (\(uuid.uuidString))" }
+    
     lazy var startTime = getTime()
     lazy var scene = Object(label: "Scene", [mesh])
     lazy var renderer = Renderer(context: defaultContext)
@@ -73,15 +75,14 @@ public final class Renderer3D: MetalViewRenderer {
     lazy var cameraController = PerspectiveCameraController(camera: camera, view: metalView)
 
     public override var sampleCount: Int { 1 }
-
     public override init() {
-        print("Render3D Init")
         super.init()
+        print("Render3D Init \(id)")
     }
     
     
     public override func setup() {
-        print("Renderer3D Setup...")
+        print("Renderer3D Setup... \(id)")
         
         mesh.add(intersectionMesh)
 
@@ -91,10 +92,16 @@ public final class Renderer3D: MetalViewRenderer {
         renderer.setClearColor(.zero)
         metalView.backgroundColor = .clear
         #endif
+    
+        renderer.setClearColor(.zero)
+        self.renderer.label = "Render3D renderer: \(id)"
+
+        print(renderer.label)
     }
 
     deinit {
-        print("Render3D Deinit")
+        print("Render3D Deinit \(id)")
+        
         cameraController.disable()
     }
 
@@ -104,14 +111,23 @@ public final class Renderer3D: MetalViewRenderer {
         
         super.update()
     }
+    
+    public override func cleanup() {
+
+        super.cleanup()
+    }
 
     public override func draw(renderPassDescriptor: MTLRenderPassDescriptor, commandBuffer: MTLCommandBuffer) {
+//        print("draw: Renderer3D \(id)")
+        //print("using \(renderer.label)")
+//         print("booger")
         renderer.draw(
             renderPassDescriptor: renderPassDescriptor,
             commandBuffer: commandBuffer,
             scene: scene,
             camera: camera
         )
+        
         
         super.draw(renderPassDescriptor: renderPassDescriptor, commandBuffer: commandBuffer)
     }
@@ -123,7 +139,7 @@ public final class Renderer3D: MetalViewRenderer {
         super.resize(size: size, scaleFactor: scaleFactor)
     }
     
-
+            
     #if os(macOS)
     public override func mouseDown(with event: NSEvent) {
         intersect(camera: camera, coordinate: normalizePoint(metalView.convert(event.locationInWindow, from: nil), metalView.frame.size))

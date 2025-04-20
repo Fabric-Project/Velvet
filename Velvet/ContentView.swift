@@ -34,6 +34,8 @@ struct ContentView: View {
                       )
     @State var redraw: Bool = false
     
+    @State var position = CodeEditor.Position.init()
+    
     let sourceCode = SourceCodeModel(fileUrl: URL(fileURLWithPath: "/Users/vade/Documents/Repositories/Fabric/Velvet/Velvet/Renderer3D.swift"))
     
     var body: some View {
@@ -41,9 +43,8 @@ struct ContentView: View {
             
             if let renderer = self.sourceCode.renderer
             {
-                AnyView(SatinMetalView(renderer:renderer))
-                    .id(ObjectIdentifier(renderer))
-
+                SatinMetalView(renderer:renderer)
+                    .id(renderer.id)
             }
             else
             {
@@ -53,17 +54,31 @@ struct ContentView: View {
             HSplitView
             {
                 Spacer()
-                CodeEditor(text: Binding(get: { self.sourceCode.content },
-                                         set: { self.sourceCode.content = $0
-                } ),
-                           position: .constant(CodeEditor.Position.init()),
-                           messages: .constant([]),
-                           language: .swift()
-                )
+                
+                VStack
+                {
+                    CodeEditor(text: Binding(get: { self.sourceCode.content },
+                                             set: { self.sourceCode.content = $0
+                    } ),
+                               position: self.$position,
+                               messages: .constant([]),
+                               language: .swift()
+                    )
+                    
+                     
+                    Divider()
+                    
+                    Button("Compile", systemImage:"play", action: {
+                        self.sourceCode.compile()
+                    })
+                    
+                }
+                .background(Color(red: 0.16, green: 0.16, blue: 0.18, opacity: 0.6))
                 .scrollContentBackground(.hidden)
                 .environment(\.codeEditorTheme, self.theme)
                 .onChange(of: self.sourceCode.rendererDidChange) { _, _ in
                     self.redraw.toggle()
+
                 }
             }
             

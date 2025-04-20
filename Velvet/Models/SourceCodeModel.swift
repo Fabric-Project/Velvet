@@ -54,8 +54,6 @@ import Satin
 
     var rendererDidChange:Bool = false
     
-    // THIS HAS TO BE IGNORED otherwise something with dynamic types fucked up the macro SwiftUI makes
-    // Thanks ChatGPT lol
     var renderer:(any MetalViewRendererDelegate)? = nil
     
     init(fileUrl:URL)
@@ -68,9 +66,11 @@ import Satin
     {
         try self.content.write(to: self.fileURL, atomically: true, encoding: .utf8)
         
+    }
     
-        
-//        let libPath = "/Users/vade/Documents/Repositories/Fabric/Satin/build"
+    func compile()
+    {
+        //        let libPath = "/Users/vade/Documents/Repositories/Fabric/Satin/build"
         let libPath = Bundle.main.sharedFrameworksPath!
         let headerSearchPaths = libPath + "/include"
         let swiftModulePath = libPath
@@ -94,6 +94,7 @@ import Satin
         
         print("\nSuccessfully compiled: \(dylibURL)\n")
         
+        // we need to remove caches for things?        
         self.renderer?.cleanup()
         self.renderer = nil
         self.rendererDidChange.toggle()
@@ -116,10 +117,10 @@ import Satin
                 print("Source Code instantiateRenderer id: \(renderer.id)")
 
                 // When ready:
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     self.renderer = renderer
                     self.rendererDidChange.toggle()
-                }
+//                }
 
 //                DispatchQueue.main.async {
 //                    let window = NSApplication.shared.windows.first
