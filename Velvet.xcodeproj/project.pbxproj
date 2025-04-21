@@ -11,8 +11,6 @@
 		1BB86A6A2DB4471800A91945 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A682DB4471800A91945 /* MetalKit.framework */; };
 		1BB86A6B2DB4471800A91945 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86A692DB4471800A91945 /* Metal.framework */; };
 		1BB86A802DB4571F00A91945 /* LanguageSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFF50CD2DB08DE5007E7497 /* LanguageSupport */; };
-		1BB86AD12DB466FC00A91945 /* libSatin.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86ACF2DB466E700A91945 /* libSatin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1BB86AD22DB466FE00A91945 /* libSatinCore.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB86AD02DB466E700A91945 /* libSatinCore.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BFF50CC2DB08DE5007E7497 /* CodeEditorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFF50CB2DB08DE5007E7497 /* CodeEditorView */; };
 /* End PBXBuildFile section */
 
@@ -22,18 +20,6 @@
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 11;
-			files = (
-				1BB86AD12DB466FC00A91945 /* libSatin.dylib in Embed Frameworks */,
-				1BB86AD22DB466FE00A91945 /* libSatinCore.dylib in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1BB86ACE2DB464C500A91945 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
 			files = (
 			);
 			name = "Embed Frameworks";
@@ -45,8 +31,6 @@
 		1BB86A452DB18CC700A91945 /* Velvet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Velvet.xcodeproj; path = /Users/vade/Documents/Repositories/Fabric/Velvet/Velvet.xcodeproj; sourceTree = "<absolute>"; };
 		1BB86A682DB4471800A91945 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		1BB86A692DB4471800A91945 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		1BB86ACF2DB466E700A91945 /* libSatin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatin.dylib; path = ../Satin/build/libSatin.dylib; sourceTree = SOURCE_ROOT; };
-		1BB86AD02DB466E700A91945 /* libSatinCore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSatinCore.dylib; path = ../Satin/build/libSatinCore.dylib; sourceTree = SOURCE_ROOT; };
 		1BB86ADE2DB57AC200A91945 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1BFF50A72DB07542007E7497 /* Velvet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velvet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -60,9 +44,26 @@
 			);
 			target = 1BFF50A62DB07542007E7497 /* Velvet */;
 		};
+		1BB86B022DB6D2D300A91945 /* Exceptions for "Scripts" folder in "Velvet" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BuildSatin.sh,
+				BuildSatinCore.sh,
+				CopySatinCore.sh,
+			);
+			target = 1BFF50A62DB07542007E7497 /* Velvet */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		1BB86B002DB6D2CE00A91945 /* Scripts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1BB86B022DB6D2D300A91945 /* Exceptions for "Scripts" folder in "Velvet" target */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 		1BFF50A92DB07542007E7497 /* Velvet */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -92,8 +93,6 @@
 		1BB86A442DB18CC700A91945 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1BB86ACF2DB466E700A91945 /* libSatin.dylib */,
-				1BB86AD02DB466E700A91945 /* libSatinCore.dylib */,
 				1BB86A692DB4471800A91945 /* Metal.framework */,
 				1BB86A682DB4471800A91945 /* MetalKit.framework */,
 				1BB86A452DB18CC700A91945 /* Velvet.xcodeproj */,
@@ -110,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				1BB86ADE2DB57AC200A91945 /* README.md */,
+				1BB86B002DB6D2CE00A91945 /* Scripts */,
 				1BFF50A92DB07542007E7497 /* Velvet */,
 				1BB86A442DB18CC700A91945 /* Frameworks */,
 				1BFF50A82DB07542007E7497 /* Products */,
@@ -131,17 +131,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BFF50B62DB07543007E7497 /* Build configuration list for PBXNativeTarget "Velvet" */;
 			buildPhases = (
+				1BB86AFE2DB6D07200A91945 /* ShellScript */,
 				1BFF50A32DB07542007E7497 /* Sources */,
+				1BB86B092DB70BCC00A91945 /* ShellScript */,
 				1BFF50A42DB07542007E7497 /* Frameworks */,
 				1BFF50A52DB07542007E7497 /* Resources */,
 				1BB86A722DB451EE00A91945 /* Embed Frameworks */,
-				1BB86ACE2DB464C500A91945 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				1BB86B002DB6D2CE00A91945 /* Scripts */,
 				1BFF50A92DB07542007E7497 /* Velvet */,
 			);
 			name = Velvet;
@@ -207,6 +209,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BB86AFE2DB6D07200A91945 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Scripts/BuildSatinCore.sh",
+				"$(SRCROOT)/Scripts/BuildSatin.sh",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatinCore.dylib",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatin.dylib",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.abi.json",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.private.swiftinterface",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftdoc",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftinterface",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftmodule",
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftsourceinfo",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"${SRCROOT}/Scripts/BuildSatinCore.sh\"\n/bin/sh \"${SRCROOT}/Scripts/BuildSatin.sh\"\n";
+		};
+		1BB86B092DB70BCC00A91945 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatinCore.dylib",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Shared\\ Frameworks/libSatinCore.dylib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"${SRCROOT}/Scripts/CopySatinCore.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1BFF50A32DB07542007E7497 /* Sources */ = {
@@ -366,7 +417,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
-					"-L$(PROJECT_DIR)/../Satin/build",
+					"-L$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/",
 					"-lSatin",
 					"-lSatinCore",
 				);
@@ -409,7 +460,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Satin/build";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
-					"-L$(PROJECT_DIR)/../Satin/build",
+					"-L$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/",
 					"-lSatin",
 					"-lSatinCore",
 				);
