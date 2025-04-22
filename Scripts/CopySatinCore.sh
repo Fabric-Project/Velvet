@@ -6,8 +6,17 @@
 #  Created by Anton Marini on 4/21/25.
 #  
 
-SRC="${BUILD_DIR}/SatinArtifacts/${CONFIGURATION}/libSatinCore.dylib"
-DST="${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Shared Frameworks"
+mkdir -p "${BUILD_DIR}/${CONFIGURATION}/${PRODUCT_NAME}.app/Contents/Shared Frameworks/"
 
-mkdir -p "${DST}"
-cp -v "${SRC}" "${DST}"
+SRC="${BUILD_DIR}/SatinArtifacts/${CONFIGURATION}/"
+DST="${BUILD_DIR}/${CONFIGURATION}/${PRODUCT_NAME}.app/Contents/Shared Frameworks/"
+
+cp -r "${SRC}" "${DST}"
+
+
+mkdir -p "${BUILD_DIR}/${CONFIGURATION}/${PRODUCT_NAME}.app/Contents/Resources/Pipelines/"
+
+SRC="${SRCROOT}/../Satin/Sources/Satin/Pipelines/"
+DST="${BUILD_DIR}/${CONFIGURATION}/${PRODUCT_NAME}.app/Contents/Resources/Pipelines/"
+
+cp -r "${SRC}" "${DST}"

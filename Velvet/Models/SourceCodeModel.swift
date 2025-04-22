@@ -71,7 +71,7 @@ import Satin
     func compile()
     {
         //        let libPath = "/Users/vade/Documents/Repositories/Fabric/Satin/build"
-        let libPath = Bundle.main.sharedFrameworksPath!
+        let libPath = Bundle.main.bundlePath + "/Contents/Shared Frameworks" //
         let headerSearchPaths = libPath + "/include"
         let swiftModulePath = libPath
         let moduleMapPath = libPath + "/module.modulemap"
