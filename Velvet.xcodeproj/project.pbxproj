@@ -39,6 +39,7 @@
 		1BB86A4F2DB2BB5100A91945 /* Exceptions for "Velvet" folder in "Velvet" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Info.plist,
 				Renderer3D__.swift,
 				Renderer3D.swift,
 			);
@@ -219,22 +220,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Scripts/BuildSatinCore.sh",
-				"$(SRCROOT)/Scripts/BuildSatin.sh",
-				"$(SRCROOT)/../Satin/Sources/SatinCore/include/SatinCore.modulemap",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatinCore.dylib",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatin.dylib",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.abi.json",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.private.swiftinterface",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftdoc",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftinterface",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftmodule",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftsourceinfo",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/module.modulmap",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -248,25 +237,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatinCore.dylib",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/libSatin.dylib",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.abi.json",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.private.swiftinterface",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftdoc",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftinterface",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftmodule",
-				"$(BUILD_DIR)/SatinArtifacts/$(CONFIGURATION)/Satin.swiftmodule/arm64-apple-macos.swiftsourceinfo",
-				"$(SRCROOT)/Scripts/CopySatinCore.sh",
 			);
 			outputFileListPaths = (
 				"",
 			);
 			outputPaths = (
-				"\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Shared Frameworks/libSatinCore.dylib\"",
-				"\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Shared Frameworks/libSatin.dylib\"",
-				"\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Shared Frameworks/\"",
-				"\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/\"",
-				"\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/\"",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,6 +399,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Velvet/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,6 +444,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Velvet/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
