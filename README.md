@@ -3,6 +3,9 @@
 
 A (very experimental) live code environment for macOS using Swift and Satin
 
+<img width="1898" alt="image" src="https://github.com/user-attachments/assets/189aae96-b848-489e-b635-1e8764c9c81b" />
+
+
 ## Development Setup
 
 Right now Velvet is in an extremely fragile state.
