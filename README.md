@@ -30,9 +30,9 @@ file as a template.
 
 ## Next Steps
 
-1 - Set up a template starting file that has the protocol requirements
-2 - Set up a document model to load diff files
-3 - Maybe think about a swift document package format to let projects be portable and contain assets like shaders etc.
+- Set up a template starting file that has the protocol requirements
+- Set up a document model to load diff files
+- Maybe think about a swift document package format to let projects be portable and contain assets like shaders etc.
 
 
 
